@@ -1,6 +1,10 @@
 import { NextRequest } from "next/server";
-import { create, findAll } from "@/features/blog/services/article.service";
+import * as articleServices from "@/features/blog/services/article.service";
 
 export async function GET(req: NextRequest) {
-  return findAll();
+  return articleServices.findAll(req);
+}
+
+export async function POST(req: NextRequest) {
+  return articleServices.create(req);
 }

@@ -1,22 +1,34 @@
 import Article, { ArticleSchema } from "@/features/blog/models/article";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function findAll() {
+export async function findAll(req: NextRequest) {
   try {
     const articles = await Article.find<ArticleSchema>();
-    return NextResponse.json(articles);
+    return NextResponse.json({
+      ok: true,
+      data: articles,
+      error: null,
+    });
   } catch (error) {
-    throw new Error("Error to get articles");
+    return NextResponse.json({
+      ok: false,
+      data: [],
+      error,
+    });
   }
 }
 
-export async function create(body: ArticleSchema) {
+export async function create(req: NextRequest) {
+  const body = await req.json();
   try {
-    await Article.create(body);
+    await Article.create<ArticleSchema>(body);
     return NextResponse.json({
       ok: true,
     });
   } catch (error) {
-    throw new Error("Error to create article");
+    return NextResponse.json({
+      ok: false,
+      error,
+    });
   }
 }

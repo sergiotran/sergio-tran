@@ -7,7 +7,9 @@ const RootLayout: FC<Readonly<PropsWithChildren>> = ({ children }) => {
     <div className="flex flex-col gap-4">
       <Header />
       <main>
-        <div className="container">{children}</div>
+        <div className="container">
+          <div className="bg-white p-4 rounded-lg">{children}</div>
+        </div>
       </main>
     </div>
   );

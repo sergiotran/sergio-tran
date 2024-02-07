@@ -1,10 +1,9 @@
+import ArticleList from "@/features/blog/views/components/ArticleList";
+
 const HomePage = () => {
   return (
     <div>
-      Hello world
-      <button type="button" className="p-3 bg-black text-white rounded-sm">
-        Test
-      </button>
+      <ArticleList />
     </div>
   );
 };
